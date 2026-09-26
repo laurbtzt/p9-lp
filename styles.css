@@ -1,247 +1,383 @@
-/* ----------------------------
-   Brand Colors & Typography :contentReference[oaicite:0]{index=0}
-   - Primary Orange:  #FF5925
-   - Light Blue:      #ADE6ED
-   - Deep Blue:       #3A39FF
-   - Lavender:        #DCB8FF
-   - Mustard Yellow:  #F2BB06
-   Typography:
-   - Headings: Poppins Bold (700)
-   - Accents:  Poppins Medium (500)
-   - Paragraph: Poppins Regular (400)
----------------------------- */
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+/* ----------------------------------------------------------------
+   Perspectiva 9 — landing page
+   Brand: Poppins (700 titluri / 500 accente / 400 text)
+   Paletă: portocaliu FF5925, albastru 3A39FF, bleu ADE6ED,
+           lila DCB8FF, galben F2BB06
+---------------------------------------------------------------- */
 
 :root {
-  --color-primary: #FF5925;
-  --color-lightblue: #ADE6ED;
-  --color-deepblue: #3A39FF;
-  --color-lavender: #DCB8FF;
-  --color-yellow: #F2BB06;
-  --font-heading: 'Poppins', sans-serif;
+  --orange: #ff5925;
+  --blue: #3a39ff;
+  --cyan: #ade6ed;
+  --lavender: #dcb8ff;
+  --yellow: #f2bb06;
+
+  --ink: #17163f;
+  --ink-soft: #4a4a6a;
+  --paper: #ffffff;
+  --paper-cool: #eff9fb;
+  --hairline: rgba(23, 22, 63, 0.12);
+
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+  --section-space: clamp(3.5rem, 7vw, 6rem);
+  --container: 1180px;
+  --measure: 62ch;
 }
 
-* {
-  margin: 0;
-  padding: 0;
+.shell {
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
-  line-height: 1.6;
-  color: #333;
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Poppins", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
 }
 
 a {
-  text-decoration: none;
   color: inherit;
 }
 
-/* -----------------------------------
-   HEADER (updated for multicolor logo)
------------------------------------ */
-header {
-    background-color: #ffffff; /* White background to let the logo’s colors pop */
-    padding: 20px 40px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 10;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.75rem 1rem;
+  border-radius: 0 0 8px 0;
+}
 
-    /* Optional: a subtle shadow to separate header from page */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
+.skip-link:focus {
+  left: 0;
+}
 
-  header .logo img {
-    height: 50px; /* adjust as needed */
-  }
+:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 3px;
+}
 
-  nav ul {
-    list-style: none;
-    display: flex;
-    gap: 24px;
-  }
+/* ---------- header ---------- */
 
-  /* Make links deep blue so they show up on white */
-  nav ul li a {
-    font-weight: 500; /* Poppins Medium */
-    color: var(--color-deepblue);
-    transition: color 0.2s ease;
-  }
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  padding-block: 0.75rem;
+  background: var(--paper);
+  border-bottom: 1px solid var(--hairline);
+}
 
-  nav ul li a:hover {
-    color: var(--color-primary);
-  }
-
-
-  .hero {
-    position: relative;        /* allow ::before to position absolutely */
-    background-image: url('images/collage_hero_2.jpg'); /* your new collage */
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-    /* You can keep your previous height rules: */
-    height: 80vh;              /* for example */
-    min-height: 500px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;              /* ensures text is white on top of overlay */
-    overflow: hidden;          /* ensure overlay stays within bounds */
-  }
-  
-  /* Overlay + backdrop‐blur */
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  
-    /* A semi‐transparent dark layer */
-    background-color: rgba(0, 0, 0, 0.7);
-  
-    /* backdrop-filter blurs whatever is behind this pseudo‐element */
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px); /* Safari support */
-    
-    /* Ensure the overlay is behind the text but above the raw image */
-    z-index: 1;
-  }
-  
-  /* Keep your hero content above the overlay */
-  .hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 800px;
-    padding: 0 20px;
-  }
-  
-  .hero-content h1 {
-    font-size: 3rem;
-    font-weight: 700; /* Poppins Bold */
-    margin-bottom: 16px;
-  }
-  
-  .hero-content p {
-    font-size: 1.2rem;
-    font-weight: 400; /* Poppins Regular */
-    margin-bottom: 24px;
-  }
-  
-  /* Button remains the same */
-  .btn-primary {
-    background-color: var(--color-primary);
-    color: white;
-    padding: 12px 32px;
-    border: none;
-    border-radius: 4px;
-    font-size: 1rem;
-    font-weight: 500; /* Poppins Medium */
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-  }
-  
-  .btn-primary:hover {
-    background-color: var(--color-deepblue);
-  }
-
-/* ------- ABOUT SECTION ------- */
-.about {
-  padding: 80px 40px;
+.site-header__inner {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  background-color: #f9f9f9;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.site-header__logo img {
+  height: 44px;
+  width: auto;
+}
+
+.site-nav {
+  display: flex;
+  gap: clamp(1rem, 3vw, 2.25rem);
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.site-nav a {
+  text-decoration: none;
+  padding-block: 0.25rem;
+  border-bottom: 2px solid transparent;
+  transition: color 160ms ease, border-color 160ms ease;
+}
+
+.site-nav a:hover {
+  color: var(--blue);
+  border-bottom-color: var(--blue);
+}
+
+/* ---------- hero ---------- */
+
+.hero {
+  padding-block: clamp(3.5rem, 8vw, 6.5rem);
+}
+
+.hero__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(2rem, 6vw, 5rem);
+}
+
+.hero h1 {
+  font-size: clamp(2.4rem, 6.2vw, 4.4rem);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  max-width: 18ch;
+}
+
+.hero__mark {
+  width: clamp(140px, 18vw, 215px);
+}
+
+/* ---------- despre ---------- */
+
+.about {
+  padding-block: var(--section-space);
+  background: var(--paper-cool);
 }
 
 .about h2 {
-  font-size: 2.5rem;
-  font-weight: 700; /* Poppins Bold */
-  color: var(--color-deepblue);
-  margin-bottom: 16px;
-  text-align: center;
+  font-size: clamp(1.6rem, 3.4vw, 2.35rem);
+  color: var(--blue);
 }
 
-.about p {
-  max-width: 700px;
-  font-size: 1rem;
-  font-weight: 400; /* Poppins Regular */
-  color: #555;
-  text-align: center;
-  margin-bottom: 24px;
+.about__body {
+  margin-top: 1.75rem;
+  max-width: var(--measure);
+  display: grid;
+  gap: 1.25rem;
 }
 
-.about .btn-secondary {
-  background-color: var(--color-yellow);
-  color: #333;
-  padding: 10px 28px;
-  border: none;
-  border-radius: 4px;
-  font-size: 1rem;
-  font-weight: 500; /* Poppins Medium */
-  cursor: pointer;
-  transition: background-color 0.2s ease;
+.about__lead {
+  font-size: clamp(1.15rem, 1.9vw, 1.45rem);
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  max-width: 44ch;
 }
 
-.about .btn-secondary:hover {
-  background-color: var(--color-primary);
-  color: white;
+.about__body p + p {
+  color: var(--ink-soft);
 }
 
-/* ------- FOOTER ------- */
-footer {
-  background-color: var(--color-deepblue);
-  color: white;
-  padding: 40px;
-  text-align: center;
+/* ---------- proiecte ---------- */
+
+.work {
+  padding-block: var(--section-space);
 }
 
-footer h2 {
-  font-weight: 700;
-  font-size: 1.8rem;
-  margin-bottom: 16px;
+.work h2 {
+  font-size: clamp(1.6rem, 3.4vw, 2.35rem);
+  color: var(--blue);
 }
 
-footer p {
-  font-size: 0.9rem;
-  margin-top: 16px;
+.work__grid {
+  list-style: none;
+  margin: clamp(2rem, 4vw, 3rem) 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.5rem, 3vw, 2.5rem);
 }
 
-footer .social-links {
-  margin: 20px 0;
+.work__item h3 {
+  margin-top: 1.1rem;
+  font-size: 1.0625rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
 }
 
-footer .social-links a {
-  margin: 0 12px;
-  font-size: 1.2rem;
-  display: inline-block;
-  color: white;
-  transition: color 0.2s ease;
+.work__item p {
+  margin-top: 0.4rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  max-width: 34ch;
 }
 
-footer .social-links a:hover {
-  color: var(--color-yellow);
+.work__visual {
+  aspect-ratio: 480 / 540;
+  border-radius: 12px;
+  overflow: hidden;
+  background-image: url("images/collage_hero_2.jpg");
+  background-size: 400% 200%;
+  background-repeat: no-repeat;
 }
 
-/* ------- RESPONSIVE TWEAKS ------- */
-@media (max-width: 768px) {
-  .hero-content h1 {
-    font-size: 2.5rem;
+.work__visual--labs {
+  background-position: 33.3333% 0%;
+}
+
+.work__visual--yoga {
+  background-position: 100% 0%;
+}
+
+.work__visual--fotbal {
+  background-position: 33.3333% 100%;
+}
+
+.work__visual--tatuaj {
+  background-position: 0% 0%;
+}
+
+.work__visual--ghiozdan {
+  background-image: url("images/ghiozdaneala1.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.work__visual--robolab {
+  background-image: url("images/robolab1.jpg");
+  background-size: cover;
+  background-position: center top;
+}
+
+/* ---------- footer ---------- */
+
+.site-footer {
+  padding-block: var(--section-space) clamp(2rem, 4vw, 3rem);
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.site-footer__logo {
+  height: 64px;
+  width: auto;
+}
+
+.site-footer__cols {
+  margin-top: clamp(2rem, 4vw, 3rem);
+  display: grid;
+  grid-template-columns: minmax(0, 24rem) minmax(0, 16rem);
+  justify-content: space-between;
+  gap: clamp(1.75rem, 4vw, 3.5rem);
+}
+
+.site-footer h2 {
+  font-size: 1.0625rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--cyan);
+}
+
+.site-footer__col p {
+  margin-top: 0.6rem;
+}
+
+.site-footer__col a {
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+  transition: border-color 160ms ease;
+}
+
+.site-footer__col a:hover {
+  border-bottom-color: var(--cyan);
+}
+
+.social {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+  display: flex;
+  gap: 0.85rem;
+}
+
+.site-footer__col .social__link {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-bottom: 0;
+  color: var(--paper);
+  transition: color 160ms ease;
+}
+
+.site-footer__col .social__link:hover {
+  color: var(--cyan);
+}
+
+.social__link svg {
+  width: 26px;
+  height: 26px;
+}
+
+.site-footer address {
+  margin-top: 0.6rem;
+  font-style: normal;
+  line-height: 1.7;
+}
+
+.site-footer__legal {
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 900px) {
+  .work__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
+  .hero__inner {
+    grid-template-columns: 1fr;
+    justify-items: start;
   }
 
-  .hero-content p {
-    font-size: 1rem;
+  .hero__mark {
+    width: min(42%, 170px);
+  }
+}
+
+@media (max-width: 560px) {
+  .site-header {
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
 
-  .about h2 {
-    font-size: 2rem;
+  .work__grid {
+    grid-template-columns: 1fr;
   }
 
-  footer h2 {
-    font-size: 1.5rem;
+  .site-footer__cols {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
   }
 }
