@@ -1,0 +1,11 @@
+{
+  // Must match the Worker project name in the Cloudflare dashboard,
+  // otherwise `wrangler deploy` creates a second, separate Worker.
+  "name": "p9-lp",
+  "compatibility_date": "2026-09-26",
+  // Only this directory is published. Keeping it separate from the repo
+  // root is what stops .git, README and config from being served publicly.
+  "assets": {
+    "directory": "./public"
+  }
+}
